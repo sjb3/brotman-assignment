@@ -2,23 +2,22 @@
 
 const fs = require('fs');
 
-function seq_conversion(filename, L) {
+function seq_conversion(filename = 'dna_seq.txt', L = 2) {
   try {
-    const data = fs.readFileSync('./dna_seq.txt', 'UTF-8');
+    // const data = fs.readFileSync('./dna_seq.txt', 'UTF-8');
+    const data = fs.readFileSync(filename, 'UTF-8');
     const lines = data.split(' ');
 
-    console.log(lines);
-
-    for (var i = 0; i < 2; i++) {
+    for (var i = 0; i < L; i++) {
       console.log('************ DNA sequence conversion ************');
-      console.log('@READ_${i + 1}');
+      console.log(`@READ_${i + 1}`);
 
       let j = i * 2;
       let snippet = lines.slice(0 + j, 2 + j);
 
       let str = '';
       let ascii = '';
-      for (let k = 0; k < 2; k++) {
+      for (let k = 0; k < L; k++) {
         if (snippet[k].slice(0, 2) === '00') {
           str += 'A';
         }
